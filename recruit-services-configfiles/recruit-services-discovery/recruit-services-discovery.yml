@@ -1,0 +1,32 @@
+application:
+  title: RecruIT Discovery
+  formatted-version: Beta 1.0.0
+  
+spring:
+  banner:
+    location: "classpath:banner.txt"
+  application:
+    name: recruit-services-discovery
+  cloud:
+    inetutils:
+      default-hostname: localhost
+      defaultHostName: localhost
+    
+server:
+  port: 8090
+
+eureka:
+  instance:
+    hostname:  ${EUREKA_HOST_NAME:localhost}
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+    lease-renewal-interval-in-seconds: 0
+
+#logging.level.com.netflix:
+#  eureka: OFF
+#  discovery: OFF

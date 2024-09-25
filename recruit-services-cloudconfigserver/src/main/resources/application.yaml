@@ -1,0 +1,49 @@
+application:
+  title: RecruIT Cloud Config Server
+  formatted-version: Beta 1.0
+      
+server:
+  port: 8888
+
+eureka:
+  instance:
+    hostname:  ${EUREKA_HOST_NAME:localhost}
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8090}/eureka/
+
+jasypt:
+  encryptor:
+    password: secret
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    algorithm: PBEWithMD5AndDES
+
+spring:
+  main:
+    allow-bean-definition-overriding: true 
+  banner:
+    location: classpath:banner.txt
+  application:
+    name: recruit-services-cloudconfigserver
+  security:
+    user:
+      name: defaultUser
+      password: ENC(XrE14ZaLST3YHPEW1JCcJA==)
+  cloud:
+    config:
+      server:
+        git:
+          uri:  http://devtools.wisseninfotech.com/recruit_product_team/recruit-services-configfiles.git
+          username: root
+          password: ENC(mxmxiC+0O9evAn/xGLAt+2HgrGKpd0Vv)
+          clone-on-start: true
+          search-paths:
+          - recruit-services-core
+          - recruit-services-dashboard
+          - recruit-services-discovery
+          - recruit-services-gateway
+          - recruit-services-requisition
+  
+

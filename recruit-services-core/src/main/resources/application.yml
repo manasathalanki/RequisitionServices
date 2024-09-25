@@ -1,0 +1,7 @@
+spring:
+  banner:
+    location: classpath:banner.txt
+    
+application:
+  title: RecruIT
+  formatted-version: Beta 1.0

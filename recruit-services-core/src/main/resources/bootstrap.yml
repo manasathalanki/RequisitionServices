@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: recruit-services-core
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    config:
+      enabled: true
+      uri: http://192.168.60.157:8888
+      username: defaultUser
+      password: ENC(XrE14ZaLST3YHPEW1JCcJA==)
+jasypt:
+  encryptor:
+    password: secret
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    algorithm: PBEWithMD5AndDES

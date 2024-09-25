@@ -1,0 +1,56 @@
+application:
+  title: RecruIT Gateway
+  formatted-version: Beta 1.0.0
+  
+server:
+  port: 9080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  instance:
+    hostname:  ${EUREKA_HOST_NAME:localhost}
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8090}/eureka/ 
+spring:
+  application:
+    name: recruit-services-gateway
+  banner:
+    location: "classpath:banner.txt"
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+      globalcors:
+          cors-configurations:
+             '[/**]':
+               allowed-origins: "*"
+               allowed-methods: "*"
+               allowed-headers: "*"
+      routes:
+      - id: config
+        uri: lb://RECRUIT-SERVICES-CONFIG
+        predicates:
+        - Path=/config/**
+      - id: core
+        uri: lb://RECRUIT-SERVICES-CORE
+        predicates:
+        - Path=/core/**
+      - id: dashboard
+        uri: lb://RECRUIT-SERVICES-DASHBOARD
+        predicates:
+        - Path=/dashboard/**
+      - id: reports
+        uri: lb://RECRUIT-SERVICES-REPORTS
+        predicates:
+        - Path=/reports/**
+      - id: requisition
+        uri: lb://RECRUIT-SERVICES-REQUISITION
+        predicates:
+        - Path=/requisition/**
+

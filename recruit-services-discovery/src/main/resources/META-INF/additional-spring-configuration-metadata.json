@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "application.title",
+    "type": "java.lang.String",
+    "description": "A description for 'application.title'"
+  },
+  {
+    "name": "application.formatted-version",
+    "type": "java.lang.String",
+    "description": "A description for 'application.formatted-version'"
+  },
+  {
+    "name": "eureka.server.lease-renewal-interval-in-seconds",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.server.lease-renewal-interval-in-seconds'"
+  }
+]}
